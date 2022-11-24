@@ -3,19 +3,8 @@ display_name: napari image slice
 contributions:
   commands:
     - id: napari-image-slice.make_qwidget
-      python_name: napari_image_slice._widget:ExampleQWidget
-      title: Make example QWidget
-    - id: napari-image-slice.make_magic_widget
-      python_name: napari_image_slice._widget:example_magic_widget
-      title: Make example magic widget
-    - id: napari-image-slice.make_func_widget
-      python_name: napari_image_slice._widget:example_function_widget
-      title: Make example function widget
+      python_name: napari_image_slice.horizontal_slice_widget:HorizontalSliceWidget
+      title: Image Slice Widget
   widgets:
     - command: napari-image-slice.make_qwidget
-      display_name: Example QWidget
-    - command: napari-image-slice.make_magic_widget
-      display_name: Example Magic Widget
-    - command: napari-image-slice.make_func_widget
-      autogenerate: true
-      display_name: Example Function Widget
+      display_name: Image Slice
