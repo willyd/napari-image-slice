@@ -69,6 +69,7 @@ class HorizontalSliceWidget(NapariMPLWidget):
             if data.ndim == 2:
                 data = data[:, self._channel]
 
+            data = np.asarray(data)
             cursor_value = data[col - col1]
             self.axes.plot(np.arange(col1, col2), data)
             vmin, vmax = data.min(), data.max()
