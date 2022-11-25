@@ -54,11 +54,23 @@ class HorizontalSliceWidget(NapariMPLWidget):
         if self.layer is None:
             return
 
-        shape = self.layer.data.shape
+        pos = self.viewer.cursor.position
+        # Handle the case where we have multiple layers with various
+        # spatial dimensions
+        n_cursor_space_dim = len(pos)
+        n_image_space_dim = self.layer.ndim
+        assert n_cursor_space_dim >= n_image_space_dim
+
+        # Keep only the last spatial dimensions for our image
+        pos = pos[-n_image_space_dim:]
+        # and the first spatial dimensions of the layer data
+        shape = self.layer.data.shape[:n_image_space_dim]
+        # clamp
         pos = [
             min(max(0, int(xx)), shape[ii] - 1)
-            for ii, xx in enumerate(self.viewer.cursor.position)
+            for ii, xx in enumerate(pos)
         ]
+
         col = pos[-1]
         if self.layer.visible:
             self.axes.clear()
